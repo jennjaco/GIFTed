@@ -13,10 +13,5 @@ namespace GIFTed.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Receivers>()
-                    .HasKey(j => new { j.Name });
-        }
     }
 }

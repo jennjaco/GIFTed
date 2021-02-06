@@ -24,7 +24,7 @@ namespace GIFTed.Controllers
             List<Receivers> receivers = context.Receivers.ToList();
 
 
-            return View();
+            return View(receivers);
         }
 
      
