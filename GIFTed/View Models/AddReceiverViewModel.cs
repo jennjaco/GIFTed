@@ -8,6 +8,13 @@ namespace GIFTed.ViewModels
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 
+        public string Address { get; set; }
+
+        [EmailAddress]
+        public string ContactEmail { get; set; }
+
+
+
         public AddReceiverViewModel()
         {
        

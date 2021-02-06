@@ -43,7 +43,9 @@ namespace GIFTed.Controllers
             {
                 Receivers newReceiver = new Receivers
                 {
-                    Name = addReceiverViewModel.Name
+                    Name = addReceiverViewModel.Name,
+                    Address = addReceiverViewModel.Address,
+                    ContactEmail = addReceiverViewModel.ContactEmail,
                 };
 
                 context.Receivers.Add(newReceiver);
@@ -52,6 +54,25 @@ namespace GIFTed.Controllers
                 return Redirect("/Receiver");
             }
             return View(addReceiverViewModel);
+        }
+
+        public IActionResult Delete()
+        {
+            ViewBag.receivers = context.Receivers.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int[] recIds)
+        {
+            foreach (int recId in recIds)
+            {
+                Receivers theReceiver = context.Receivers.Find(recId);
+                context.Receivers.Remove(theReceiver);
+            }
+
+            context.SaveChanges();
+            return Redirect("/Receiver");
         }
 
     }
