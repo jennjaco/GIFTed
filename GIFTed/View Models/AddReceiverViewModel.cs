@@ -10,6 +10,7 @@ namespace GIFTed.ViewModels
 
         public AddReceiverViewModel()
         {
+       
         }
     }
 }

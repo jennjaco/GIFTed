@@ -1,42 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GIFTed.Data;
 using GIFTed.Models;
 using GIFTed.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GIFTed.Controllers
 {
     public class ReceiverController : Controller
     {
-        public IActionResult About()
+        private ReceiversDbContext context;
+
+        public ReceiverController(ReceiversDbContext dbContext)
         {
-            List<Receivers> receivers = new List<Receivers>(ReceiverData.GetAll());
-            return View(receivers);
+            context = dbContext;
         }
 
-        [HttpGet("/Add")]
+        // GET: /<controller>/
+        public IActionResult Index()
+        {
+            List<Receivers> receivers = context.Receivers.ToList();
+
+
+            return View();
+        }
+
+     
         public IActionResult Add()
         {
             AddReceiverViewModel addReceiverViewModel = new AddReceiverViewModel();
             return View(addReceiverViewModel);
         }
 
+
+
         [HttpPost]
         public IActionResult Add(AddReceiverViewModel addReceiverViewModel)
         {
-            Receivers newReceiver = new Receivers
+            if (ModelState.IsValid)
             {
-                Name = addReceiverViewModel.Name
-            };
-            ReceiverData.Add(newReceiver);
+                Receivers newReceiver = new Receivers
+                {
+                    Name = addReceiverViewModel.Name
+                };
 
-            return Redirect("/About");
+                context.Receivers.Add(newReceiver);
+                context.SaveChanges();
+
+                return Redirect("/Receiver");
+            }
+            return View(addReceiverViewModel);
         }
 
-
-        public ReceiverController()
-        {
-        }
     }
 }

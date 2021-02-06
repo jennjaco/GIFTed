@@ -8,11 +8,13 @@ using Microsoft.Extensions.Logging;
 using GIFTed.Models;
 using GIFTed.ViewModels;
 using GIFTed.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GIFTed.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -24,6 +26,7 @@ namespace GIFTed.Controllers
         {
             return View();
         }
+
 
         public IActionResult Privacy()
         {
