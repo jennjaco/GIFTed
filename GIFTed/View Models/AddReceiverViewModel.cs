@@ -27,6 +27,8 @@ namespace GIFTed.ViewModels
             new SelectListItem(RelationshipType.Aquaintance.ToString(), ((int)RelationshipType.Aquaintance).ToString()),
         };
 
+        public string Notes { get; set; }
+
         public AddReceiverViewModel()
         {
        

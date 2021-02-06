@@ -8,16 +8,18 @@ namespace GIFTed.Models
         public string Address { get; set; }
         public string ContactEmail { get; set; }
         public RelationshipType Type { get; set; }
+        public string Notes { get; set; }
 
         public Receivers()
         {
         }
 
-        public Receivers(string name, string address, string contactemail)
+        public Receivers(string name, string address, string contactemail, string notes)
         {
             Name = name;
             Address = address;
             ContactEmail = contactemail;
+            Notes = notes;
         }
 
         public override string ToString()

@@ -47,6 +47,7 @@ namespace GIFTed.Controllers
                     Address = addReceiverViewModel.Address,
                     ContactEmail = addReceiverViewModel.ContactEmail,
                     Type = addReceiverViewModel.Type,
+                    Notes = addReceiverViewModel.Notes,
                 };
 
                 context.Receivers.Add(newReceiver);
@@ -74,6 +75,13 @@ namespace GIFTed.Controllers
 
             context.SaveChanges();
             return Redirect("/Receiver");
+        }
+
+        public IActionResult About(int id)
+        {
+            Receivers receiver = context.Receivers.Find(id);
+
+            return View(receiver);
         }
 
     }
