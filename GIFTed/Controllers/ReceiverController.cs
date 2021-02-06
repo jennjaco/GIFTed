@@ -46,6 +46,7 @@ namespace GIFTed.Controllers
                     Name = addReceiverViewModel.Name,
                     Address = addReceiverViewModel.Address,
                     ContactEmail = addReceiverViewModel.ContactEmail,
+                    Type = addReceiverViewModel.Type,
                 };
 
                 context.Receivers.Add(newReceiver);
