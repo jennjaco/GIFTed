@@ -8,6 +8,7 @@
     <Folder Include="Views\Receiver\" />
     <Folder Include="View Models\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Gift\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="0.69.10" />

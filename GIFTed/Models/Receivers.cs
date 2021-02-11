@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace GIFTed.Models
 {
     public class Receivers
@@ -9,6 +11,8 @@ namespace GIFTed.Models
         public string ContactEmail { get; set; }
         public RelationshipType Type { get; set; }
         public string Notes { get; set; }
+
+        public List<Gift> gifts { get; set; }
 
         public Receivers()
         {
