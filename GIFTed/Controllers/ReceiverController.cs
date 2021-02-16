@@ -77,12 +77,16 @@ namespace GIFTed.Controllers
             return Redirect("/Receiver");
         }
 
-        public IActionResult About(int id)
-        {
-            Receivers receiver = context.Receivers.Find(id);
+        //public IActionResult About(int id)
+        //{
+            //List<Receivers> receiver = context.Receivers.Include(g => g.gifts).ToList();
 
-            return View(receiver);
-        }
+
+            //Is this even where about needs to be? Is it going to use the gift's id or the receiver's id? I want it to
+            //use the receiver id, but also list the gifts that have receiver id assigned as a foreign key
+
+        //    return View(receiver);
+        //}
 
     }
 }

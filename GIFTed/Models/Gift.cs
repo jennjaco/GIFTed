@@ -7,16 +7,16 @@ namespace GIFTed.Models
     public class Gift
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string GiftName { get; set; }
         public float Cost { get; set; }
         public string Link { get; set; }
 
         public Receivers Receiver { get; set; }
         public int ReceiverId { get; set; }
 
-        public Gift(string name, float cost, string link)
+        public Gift(string giftName, float cost, string link)
         {
-            Name = name;
+            GiftName = giftName;
             Cost = cost;
             Link = link;
         }

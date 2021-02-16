@@ -2,14 +2,16 @@
 using GIFTed.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GIFTed.Migrations
 {
     [DbContext(typeof(ReceiversDbContext))]
-    partial class ReceiversDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210213032106_GiftMigration")]
+    partial class GiftMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +27,10 @@ namespace GIFTed.Migrations
                     b.Property<float>("Cost")
                         .HasColumnType("float");
 
-                    b.Property<string>("GiftName")
+                    b.Property<string>("Link")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Link")
+                    b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ReceiverId")

@@ -1,0 +1,37 @@
+﻿@model List<GIFTed.Models.Gift>
+
+<h1>All Gifts</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Cost
+        </th>
+        <th>
+            Link
+        </th>
+        <th>
+            Reciever
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.GiftName</td>
+            <td>@item.Cost</td>
+            <td>@item.Link</td>
+            <td>@item.Receiver.Name</td>
+        </tr>
+    }
+</table>
+
+<p>
+    <a asp-controller="Gift" asp-action="Add">Add New Item</a>
+</p>

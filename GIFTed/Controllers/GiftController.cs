@@ -40,7 +40,7 @@ namespace GIFTed.Controllers
                 Receivers theReceiver = context.Receivers.Find(addGiftViewModel.ReceiverId);
                 Gift newGift = new Gift
                 {
-                    Name = addGiftViewModel.Name,
+                    GiftName = addGiftViewModel.GiftName,
                     Cost = addGiftViewModel.Cost,
                     Link = addGiftViewModel.Link,
                     Receiver = theReceiver,
@@ -54,6 +54,7 @@ namespace GIFTed.Controllers
 
             return View(addGiftViewModel);
         }
+
 
     }
 }

@@ -1,0 +1,27 @@
+﻿
+@model GIFTed.ViewModels.AboutReceiverViewModel;
+
+
+<h1>@Model.Name</h1>
+
+<div>
+    <p>Address: @Model.Address</p>
+    <p>Email: @Model.ContactEmail</p>
+    <p>Relationship: @Model.Type</p>
+    <p>Notes: @Model.Notes</p>
+
+    <table class="table">
+        <tr>
+            <th>Gift</th>
+            <th>Cost</th>
+            <th>Link</th>
+        </tr>
+
+        <tr>
+            <td>@Model.GiftName</td>
+            <td>@Model.Cost</td>
+            <td>@Model.Link</td>
+        </tr>
+    </table>
+
+</div>

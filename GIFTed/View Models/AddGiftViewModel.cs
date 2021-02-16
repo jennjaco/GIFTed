@@ -11,7 +11,7 @@ namespace GIFTed.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Input a name for the gift")]
-        public string Name { get; set; }
+        public string GiftName { get; set; }
 
         public float Cost { get; set; }
         public string Link { get; set; }
