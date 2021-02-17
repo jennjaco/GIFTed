@@ -21,9 +21,9 @@ namespace GIFTed.ViewModels
 
         public int ReceiverId { get; set; }
 
-     
+        public List<Gift> giftList { get; set; }
 
-        public AboutReceiverViewModel(Receivers receiver, List<Gift> giftList)
+        public AboutReceiverViewModel(Receivers receiver)
         {
             Id = receiver.Id;
             Name = receiver.Name;
@@ -32,17 +32,8 @@ namespace GIFTed.ViewModels
             Type = receiver.Type;
             Notes = receiver.Notes;
 
-            
+            giftList = receiver.gifts;
 
-            foreach (var item in giftList)
-            {
-                if (item.ReceiverId == receiver.Id)
-                {
-                    GiftName = item.GiftName;
-                    Cost = item.Cost;
-                    Link = item.Link;
-                }
-            }
         }
     }
 }

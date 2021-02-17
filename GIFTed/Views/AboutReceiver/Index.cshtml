@@ -17,11 +17,15 @@
             <th>Link</th>
         </tr>
 
-        <tr>
-            <td>@Model.GiftName</td>
-            <td>@Model.Cost</td>
-            <td>@Model.Link</td>
-        </tr>
+        @foreach (var gift in Model.giftList)
+        {
+            <tr>
+                <td>@gift.GiftName</td>
+                <td>@gift.Cost</td>
+                <td>@gift.Link</td>
+            </tr>
+        }
+
     </table>
 
 </div>

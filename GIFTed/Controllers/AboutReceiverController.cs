@@ -23,9 +23,12 @@ namespace GIFTed.Controllers
         {
             Receivers receiver = context.Receivers.Find(id);
 
-            List<Gift> giftList = context.Gift.Include(e => e.Receiver).ToList();
 
-            AboutReceiverViewModel viewModel = new AboutReceiverViewModel(receiver, giftList);
+            //List<Gift> giftList = context.Gift
+            //    .Where(g => g.ReceiverId == receiver.Id)
+            //    .ToList();
+
+            AboutReceiverViewModel viewModel = new AboutReceiverViewModel(receiver);
 
             return View(viewModel);
         }
