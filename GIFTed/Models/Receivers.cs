@@ -28,7 +28,7 @@ namespace GIFTed.Models
         {
         }
 
-        public Receivers(string name, string address, string contactemail, string notes, List<Gift>  gifts)
+        public Receivers(string name, string address, string contactemail, string notes, List<Gift> gifts)
         {
             Name = name;
             Address = address;

@@ -21,7 +21,7 @@ namespace GIFTed.ViewModels
 
         public int ReceiverId { get; set; }
 
-        public List<Gift> giftList { get; set; }
+        public List<Gift> gifts { get; set; }
 
         public AboutReceiverViewModel(Receivers receiver)
         {
@@ -32,7 +32,7 @@ namespace GIFTed.ViewModels
             Type = receiver.Type;
             Notes = receiver.Notes;
 
-            giftList = receiver.gifts;
+            gifts = receiver.gifts;
 
         }
     }
