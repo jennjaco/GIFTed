@@ -26,6 +26,7 @@ namespace GIFTed
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddDbContext<ReceiversDbContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
         }
@@ -55,6 +56,7 @@ namespace GIFTed
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
