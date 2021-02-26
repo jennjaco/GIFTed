@@ -1,0 +1,28 @@
+﻿@using GIFTed.ViewModels;
+@model GIFTed.ViewModels.AddGiftViewModel;
+
+
+<h1>Edit Gift</h1>
+
+<form asp-controller="Gift" asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="GiftName">Gift Name</label>
+        <input asp-for="GiftName" value="@Model.GiftName" />
+        <span asp-validation-for="GiftName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Cost">Cost</label>
+        <input asp-for="Cost" value="@Model.Cost" />
+        <span asp-validation-for="Cost"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Link">Link</label>
+        <input asp-for="Link" value="@Model.Link" />
+        <span asp-validation-for="Link"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReceiverId">Receiver</label>
+        <select asp-for="ReceiverId" asp-items="Model.Receivers"></select>
+    </div>
+    <input type="submit" value="Save" />
+</form>

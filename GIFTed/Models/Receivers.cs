@@ -17,6 +17,10 @@ namespace GIFTed.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
+
+        
+        public DateTime Birthday { get; set; }
+
         public string Address { get; set; }
         public string ContactEmail { get; set; }
         public RelationshipType Type { get; set; }
@@ -28,9 +32,10 @@ namespace GIFTed.Models
         {
         }
 
-        public Receivers(string name, string address, string contactemail, string notes, List<Gift> gifts)
+        public Receivers(string name, DateTime birthday, string address, string contactemail, string notes, List<Gift> gifts)
         {
             Name = name;
+            Birthday = birthday;
             Address = address;
             ContactEmail = contactemail;
             Notes = notes;

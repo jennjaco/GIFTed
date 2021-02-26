@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GIFTed.Models;
+using System.ComponentModel.DataAnnotations;
 using GIFTed.Data;
 namespace GIFTed.ViewModels
 {
@@ -9,6 +10,10 @@ namespace GIFTed.ViewModels
 
         public int Id { get; set; }
         public string Name { get; set; }
+
+        [DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime Birthday { get; set; }
+
         public string Address { get; set; }
         public string ContactEmail { get; set; }
         public RelationshipType Type { get; set; }
@@ -27,6 +32,7 @@ namespace GIFTed.ViewModels
         {
             Id = receiver.Id;
             Name = receiver.Name;
+            Birthday = receiver.Birthday;
             Address = receiver.Address;
             ContactEmail = receiver.ContactEmail;
             Type = receiver.Type;

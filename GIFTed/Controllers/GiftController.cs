@@ -55,6 +55,50 @@ namespace GIFTed.Controllers
             return View(addGiftViewModel);
         }
 
+      
+        public IActionResult Delete(int Id)
+        {
+            Gift theGift = context.Gift.Find(Id);
+            context.Gift.Remove(theGift);
+            context.SaveChanges();
+            return Redirect("/Gift");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            Gift editGift = context.Gift.Find(Id);
+            List<Receivers> receivers = context.Receivers.ToList();
+            AddGiftViewModel addGiftViewModel = new AddGiftViewModel(receivers)
+            {
+                GiftName = editGift.GiftName,
+                Cost = editGift.Cost,
+                Link = editGift.Link,
+                ReceiverId = editGift.ReceiverId,
+ 
+            };
+            return View(addGiftViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int Id, [Bind("GiftName,Cost,Link")] AddGiftViewModel addGiftViewModel)
+        {
+            Gift theGift = context.Gift.Find(Id);
+            Receivers theReceiver = context.Receivers.Find(theGift.ReceiverId);
+
+            if (ModelState.IsValid)
+            {
+                theGift.GiftName = addGiftViewModel.GiftName;
+                theGift.Cost = addGiftViewModel.Cost;
+                theGift.Link = addGiftViewModel.Link;
+                theGift.Receiver = theReceiver;
+
+                context.Update(theGift);
+                context.SaveChanges();
+            }
+            return Redirect("/Gift");
+        }
+
 
     }
 }

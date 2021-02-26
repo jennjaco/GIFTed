@@ -2,6 +2,7 @@
 
 <h1>All Gifts</h1>
 
+
 <table class="table">
     <tr>
         <th>
@@ -20,18 +21,28 @@
             Reciever
         </th>
     </tr>
+
+
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.Id</td>
             <td>@item.GiftName</td>
             <td>@item.Cost</td>
-            <td>@item.Link</td>
+            <td><a href="@item.Link" target="_blank">Buy Now!</a></td>
             <td>@item.Receiver.Name</td>
+            <td>
+                <a class="btn btn-outline-primary" asp-controller="Gift" asp-action="Edit" asp-route-id="@item.Id">Edit Gift</a>
+                <a class="btn btn-outline-danger" asp-controller="Gift" asp-action="Delete" asp-route-id="@item.Id">Delete Gift</a>
+            </td>
         </tr>
     }
 </table>
 
+
+
 <p>
     <a asp-controller="Gift" asp-action="Add">Add New Item</a>
 </p>
+
+@*<p><a class="btn btn-outline-danger" asp-controller="Gift" asp-action="Delete">Delete Gifts</a><p>*@

@@ -3,14 +3,16 @@ using System;
 using GIFTed.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GIFTed.Migrations
 {
     [DbContext(typeof(ReceiversDbContext))]
-    partial class ReceiversDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210221235432_BirthdayMigration")]
+    partial class BirthdayMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

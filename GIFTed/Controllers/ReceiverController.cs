@@ -77,16 +77,48 @@ namespace GIFTed.Controllers
             return Redirect("/Receiver");
         }
 
-        //public IActionResult About(int id)
-        //{
-            //List<Receivers> receiver = context.Receivers.Include(g => g.gifts).ToList();
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+
+            Receivers theReceiver = context.Receivers.Find(Id);
+            AddReceiverViewModel addReceiverViewModel = new AddReceiverViewModel
+            {
+                Name = theReceiver.Name,
+                Birthday = theReceiver.Birthday,
+                ContactEmail = theReceiver.ContactEmail,
+                Address = theReceiver.Address,
+                Type = theReceiver.Type,
+                Notes = theReceiver.Notes,
+            };
+
+            return View(addReceiverViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int Id, [Bind("Id,Name,Birthday,ContactEmail,Address,Type,Notes")] AddReceiverViewModel addReceiverViewModel)
+        {
+            Receivers receiver = context.Receivers.Find(Id);
+
+            if (ModelState.IsValid)
+            {
+                receiver.Name = addReceiverViewModel.Name;
+                receiver.Birthday = addReceiverViewModel.Birthday;
+                receiver.ContactEmail = addReceiverViewModel.ContactEmail;
+                receiver.Address = addReceiverViewModel.Address;
+                receiver.Type = addReceiverViewModel.Type;
+                receiver.Notes = addReceiverViewModel.Notes;
 
 
-            //Is this even where about needs to be? Is it going to use the gift's id or the receiver's id? I want it to
-            //use the receiver id, but also list the gifts that have receiver id assigned as a foreign key
+                context.Update(receiver);
+                context.SaveChanges();
 
-        //    return View(receiver);
-        //}
+            }
+            
+            return Redirect("/Receiver");
+        }
+            
+
 
     }
 }

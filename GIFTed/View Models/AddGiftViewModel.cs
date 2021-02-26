@@ -19,6 +19,7 @@ namespace GIFTed.ViewModels
 
         public int ReceiverId { get; set; }
 
+
         public List<SelectListItem> Receivers { get; set; }
 
         public AddGiftViewModel(List<Receivers> receivers)

@@ -5,6 +5,7 @@
 <h1>@Model.Name</h1>
 
 <div>
+    <p>Birthday: @Model.Birthday.ToString("MM/dd/yyyy")</p>
     <p>Address: @Model.Address</p>
     <p>Email: @Model.ContactEmail</p>
     <p>Relationship: @Model.Type</p>
@@ -17,15 +18,28 @@
             <th>Link</th>
         </tr>
 
-        @foreach (var gift in Model.gifts)
+
+        @if (Model.gifts == null)
         {
-            <tr>
-                <td>@gift.GiftName</td>
-                <td>@gift.Cost</td>
-                <td>@gift.Link</td>
-            </tr>
+            <p>No gifts yet!</p>
+        }
+        else
+        {
+            @foreach (var gift in Model.gifts)
+            {
+                <tr>
+                    <td>@gift.GiftName</td>
+                    <td>$@gift.Cost</td>
+                    <td><a href=@gift.Link>Buy Now!</a></td>
+                </tr>
+            }
         }
 
+
+
     </table>
+
+    <p><a class="btn btn-primary mb-2" asp-controller="Receiver" asp-action="Edit" asp-route-id="@Model.Id">Edit Receiver</a></p>
+    <p><a class="btn btn-danger mb-2" asp-controller="Receiver" asp-action="Delete" asp-route-id="@Model.Id">Delete This Receiver</a></p>
 
 </div>

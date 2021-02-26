@@ -11,6 +11,9 @@ namespace GIFTed.ViewModels
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime Birthday { get; set; }
+
         public string Address { get; set; }
 
         [EmailAddress]
