@@ -1,8 +1,8 @@
 @using Microsoft.AspNetCore.Identity
-@using GIFTed.Data 
+@using GIFTed.Areas.Identity.Data
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<GIFTedUser> SignInManager
+@inject UserManager<GIFTedUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

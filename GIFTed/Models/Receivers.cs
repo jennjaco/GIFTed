@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GIFTed.Areas.Identity.Data;
 using GIFTed.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GIFTed.Models
 {
     public class Receivers
     {
+        private UserManager<GIFTedUser> userManager;
         private ReceiversDbContext context;
 
-        public Receivers(ReceiversDbContext dbContext)
+        public Receivers(UserManager<GIFTedUser> usrMgr, ReceiversDbContext dbContext)
         {
+            userManager = usrMgr;
             context = dbContext;
         }
 
@@ -27,6 +32,9 @@ namespace GIFTed.Models
         public string Notes { get; set; }
 
         public List<Gift> gifts { get; set; }
+
+        
+        public string UserId { get; set; }
 
         public Receivers()
         {

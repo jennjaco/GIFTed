@@ -10,6 +10,6 @@ namespace GIFTed.Areas.Identity.Data
     public class GIFTedUser : IdentityUser
     {
         [PersonalData]
-        public string Name { get; set; }
+        public string UserId { get; set; }
     }
 }

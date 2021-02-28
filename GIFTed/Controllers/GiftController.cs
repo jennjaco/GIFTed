@@ -1,27 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GIFTed.Areas.Identity.Data;
 using GIFTed.Data;
 using GIFTed.Models;
 using GIFTed.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GIFTed.Controllers
 {
+    [Authorize]
     public class GiftController : Controller
     {
+        private UserManager<GIFTedUser> userManager;
         private ReceiversDbContext context;
 
-        public GiftController(ReceiversDbContext dbContext)
+        public GiftController(UserManager<GIFTedUser> usrMgr, ReceiversDbContext dbContext)
         {
+            userManager = usrMgr;
             context = dbContext;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            List<Gift> gifts = context.Gift.Include(e => e.Receiver).ToList();
+            List<Gift> gifts = context.Gift
+                .Include(e => e.Receiver)
+                .Where(i => i.Receiver.UserId == userManager.GetUserAsync(User).Result.Id)
+                .ToList();
             return View(gifts);
         }
 

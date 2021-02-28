@@ -4,25 +4,48 @@ using System.Linq;
 using GIFTed.Data;
 using GIFTed.Models;
 using GIFTed.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GIFTed.Areas.Identity.Data;
 
 namespace GIFTed.Controllers
 {
+    [Authorize]
     public class ReceiverController : Controller
     {
+        private UserManager<GIFTedUser> userManager;
         private ReceiversDbContext context;
 
-        public ReceiverController(ReceiversDbContext dbContext)
+        public ReceiverController(UserManager<GIFTedUser> usrMgr, ReceiversDbContext dbContext)
         {
+            userManager = usrMgr;
             context = dbContext;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Receivers> receivers = context.Receivers.ToList();
+            List<Receivers> receivers = context.Receivers.Where(i => i.UserId == userManager.GetUserAsync(User).Result.Id).ToList();
+            foreach (var item in receivers.ToList())
+            {
 
+                receivers.Add(item);
+                //try
+                //{
+                //    if (item.UserId.Equals(userManager.GetUserAsync(User).Result.Id))
+                //    {
+                //        receivers.Add(item);
+                //    }
+                //}
+                //catch (NullReferenceException)
+                //{
+                //    return Redirect("/Receiver/Add");
+                //}
+
+               
+            }
 
             return View(receivers);
         }
@@ -48,6 +71,7 @@ namespace GIFTed.Controllers
                     ContactEmail = addReceiverViewModel.ContactEmail,
                     Type = addReceiverViewModel.Type,
                     Notes = addReceiverViewModel.Notes,
+                    UserId = userManager.GetUserAsync(User).Result.Id,
                 };
 
                 context.Receivers.Add(newReceiver);
@@ -58,22 +82,12 @@ namespace GIFTed.Controllers
             return View(addReceiverViewModel);
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int Id)
         {
-            ViewBag.receivers = context.Receivers.ToList();
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Delete(int[] recIds)
-        {
-            foreach (int recId in recIds)
-            {
-                Receivers theReceiver = context.Receivers.Find(recId);
-                context.Receivers.Remove(theReceiver);
-            }
-
+            Receivers theReceiver = context.Receivers.Find(Id);
+            context.Remove(theReceiver);
             context.SaveChanges();
+
             return Redirect("/Receiver");
         }
 
