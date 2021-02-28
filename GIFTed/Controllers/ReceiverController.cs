@@ -27,25 +27,10 @@ namespace GIFTed.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Receivers> receivers = context.Receivers.Where(i => i.UserId == userManager.GetUserAsync(User).Result.Id).ToList();
-            foreach (var item in receivers.ToList())
-            {
+            List<Receivers> receivers = context.Receivers
+                .Where(i => i.UserId == userManager.GetUserAsync(User).Result.Id)
+                .ToList();
 
-                receivers.Add(item);
-                //try
-                //{
-                //    if (item.UserId.Equals(userManager.GetUserAsync(User).Result.Id))
-                //    {
-                //        receivers.Add(item);
-                //    }
-                //}
-                //catch (NullReferenceException)
-                //{
-                //    return Redirect("/Receiver/Add");
-                //}
-
-               
-            }
 
             return View(receivers);
         }

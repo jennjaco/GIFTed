@@ -36,7 +36,9 @@ namespace GIFTed.Controllers
 
         public IActionResult Add()
         {
-            List<Receivers> receivers = context.Receivers.ToList();
+            List<Receivers> receivers = context.Receivers
+                .Where(i => i.UserId == userManager.GetUserAsync(User).Result.Id)
+                .ToList();
             AddGiftViewModel addGiftViewModel = new AddGiftViewModel(receivers);
             return View(addGiftViewModel);
         }
