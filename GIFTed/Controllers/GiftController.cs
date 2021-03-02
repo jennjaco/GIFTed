@@ -79,32 +79,33 @@ namespace GIFTed.Controllers
         public IActionResult Edit(int Id)
         {
             Gift editGift = context.Gift.Find(Id);
-            List<Receivers> receivers = context.Receivers.ToList();
+            List<Receivers> receivers = context.Receivers
+                .Where(i => i.UserId == userManager.GetUserAsync(User).Result.Id)
+                .ToList();
             AddGiftViewModel addGiftViewModel = new AddGiftViewModel(receivers)
             {
                 GiftName = editGift.GiftName,
                 Cost = editGift.Cost,
                 Link = editGift.Link,
-                ReceiverId = editGift.ReceiverId,
  
             };
             return View(addGiftViewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(int Id, [Bind("GiftName,Cost,Link")] AddGiftViewModel addGiftViewModel)
+        public IActionResult Edit(int Id, [Bind("GiftName,Cost,Link,ReceiverId")] AddGiftViewModel addGiftViewModel)
         {
             Gift theGift = context.Gift.Find(Id);
-            Receivers theReceiver = context.Receivers.Find(theGift.ReceiverId);
 
             if (ModelState.IsValid)
             {
                 theGift.GiftName = addGiftViewModel.GiftName;
                 theGift.Cost = addGiftViewModel.Cost;
                 theGift.Link = addGiftViewModel.Link;
-                theGift.Receiver = theReceiver;
+                theGift.ReceiverId = addGiftViewModel.ReceiverId;
 
-                context.Update(theGift);
+
+                context.Gift.Update(theGift);
                 context.SaveChanges();
             }
             return Redirect("/Gift");

@@ -52,6 +52,7 @@ namespace GIFTed.Controllers
                 Receivers newReceiver = new Receivers
                 {
                     Name = addReceiverViewModel.Name,
+                    Birthday = addReceiverViewModel.Birthday,
                     Address = addReceiverViewModel.Address,
                     ContactEmail = addReceiverViewModel.ContactEmail,
                     Type = addReceiverViewModel.Type,
@@ -97,19 +98,19 @@ namespace GIFTed.Controllers
         [HttpPost]
         public IActionResult Edit(int Id, [Bind("Id,Name,Birthday,ContactEmail,Address,Type,Notes")] AddReceiverViewModel addReceiverViewModel)
         {
-            Receivers receiver = context.Receivers.Find(Id);
+            Receivers theReceiver = context.Receivers.Find(Id);
 
             if (ModelState.IsValid)
             {
-                receiver.Name = addReceiverViewModel.Name;
-                receiver.Birthday = addReceiverViewModel.Birthday;
-                receiver.ContactEmail = addReceiverViewModel.ContactEmail;
-                receiver.Address = addReceiverViewModel.Address;
-                receiver.Type = addReceiverViewModel.Type;
-                receiver.Notes = addReceiverViewModel.Notes;
+                theReceiver.Name = addReceiverViewModel.Name;
+                theReceiver.Birthday = addReceiverViewModel.Birthday;
+                theReceiver.ContactEmail = addReceiverViewModel.ContactEmail;
+                theReceiver.Address = addReceiverViewModel.Address;
+                theReceiver.Type = addReceiverViewModel.Type;
+                theReceiver.Notes = addReceiverViewModel.Notes;
 
 
-                context.Update(receiver);
+                context.Update(theReceiver);
                 context.SaveChanges();
 
             }

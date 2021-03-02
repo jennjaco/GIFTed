@@ -7,22 +7,31 @@
 <form asp-controller="Gift" asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="GiftName">Gift Name</label>
-        <input asp-for="GiftName" value="@Model.GiftName" />
+        <input class="form-control" asp-for="GiftName" value="@Model.GiftName" />
         <span asp-validation-for="GiftName"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Cost">Cost</label>
-        <input asp-for="Cost" value="@Model.Cost" />
-        <span asp-validation-for="Cost"></span>
+        <label class="control-label" asp-for="Cost">Cost (to the nearest dollar)</label>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" asp-validation-for="Cost">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" asp-for="Cost" value="@Model.Cost"/>
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label asp-for="Link">Link</label>
-        <input asp-for="Link" value="@Model.Link" />
+        <input class="form-control" asp-for="Link" value="@Model.Link" />
         <span asp-validation-for="Link"></span>
     </div>
     <div class="form-group">
         <label asp-for="ReceiverId">Receiver</label>
-        <select asp-for="ReceiverId" asp-items="Model.Receivers"></select>
+        <select class="form-control" id="exampleSelect1" asp-for="ReceiverId" asp-items="@Model.Receivers"></select>
     </div>
-    <input type="submit" value="Save" />
+    <input role="button" type="submit" class="btn btn-primary" value="Save" />
 </form>

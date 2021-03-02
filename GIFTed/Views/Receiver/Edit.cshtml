@@ -6,31 +6,31 @@
 <form asp-controller="Receiver" asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="Name">Receiver Name</label>
-        <input asp-for="Name" value="@Model.Name" />
+        <input class="form-control" asp-for="Name" value="@Model.Name"/>
         <span asp-validation-for="Name"></span>
     </div>
     <div class="form-group">
         <label asp-for="Birthday">Receiver Birthday</label>
-        <input asp-for="Birthday" value="@Model.Birthday" />
+        <input class="form-control" asp-for="Birthday" value="@Model.Birthday"/>
         <span asp-validation-for="Birthday"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address">Receiver Address</label>
-        <input asp-for="Address" value="@Model.Address"/>
+        <input class="form-control" asp-for="Address" value="@Model.Address"/>
         <span asp-validation-for="Address"></span>
     </div>
     <div class="form-group">
         <label asp-for="ContactEmail">Receiver Email Address</label>
-        <input asp-for="ContactEmail" value="@Model.ContactEmail" />
+        <input class="form-control" id="exampleInputEmail" placeholder="Enter email" asp-for="ContactEmail" value="@Model.ContactEmail" />
         <span asp-validation-for="ContactEmail"></span>
     </div>
     <div class="form-group">
         <label asp-for="Type">Relationship Type</label>
-        <select asp-for="Type" asp-items="Model.RelationshipTypes"></select>
+        <select class="form-control" id="exampleSelect1" asp-for="Type" value="@Model.Type" asp-items="Model.RelationshipTypes"></select>
     </div>
     <div class="form-group">
         <label asp-for="Notes">Notes</label>
-        <textarea asp-for="Notes" value="@Model.Notes">Add Notes</textarea>
+        <textarea class="form-control" id="exampleTextarea" rows="10" asp-for="Notes" value="@Model.Notes">Add Notes</textarea>
     </div>
-    <input type="submit" value="Save" />
+    <input role="button" type="submit" class="btn btn-primary" value="Save" />
 </form>

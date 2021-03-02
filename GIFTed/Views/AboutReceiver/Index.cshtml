@@ -30,7 +30,7 @@
                 <tr>
                     <td>@gift.GiftName</td>
                     <td>$@gift.Cost</td>
-                    <td><a href=@gift.Link>Buy Now!</a></td>
+                    <td><a role="button" class="btn btn-link" href=@gift.Link target="_blank">Buy Now!</a></td>
                 </tr>
             }
         }
@@ -38,8 +38,8 @@
 
 
     </table>
-    <p><a asp-controller="Gift" asp-action="Add">Add a new gift</a></p>
-    <p><a class="btn btn-primary mb-2" asp-controller="Receiver" asp-action="Edit" asp-route-id="@Model.Id">Edit Receiver</a></p>
-    <p><a class="btn btn-danger mb-2" asp-controller="Receiver" asp-action="Delete" asp-route-id="@Model.Id">Delete This Receiver</a></p>
+    <p><a role="button" class="btn btn-success btn-lg" asp-controller="Gift" asp-action="Add">Add a new gift</a>
+    <a role="button"class="btn btn-warning" asp-controller="Receiver" asp-action="Edit" asp-route-id="@Model.Id">Edit Receiver</a>
+    <a role="button"class="btn btn-danger" asp-controller="Receiver" asp-action="Delete" asp-route-id="@Model.Id">Delete This Receiver</a></p>
 
 </div>

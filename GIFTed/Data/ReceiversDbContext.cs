@@ -21,7 +21,6 @@ namespace GIFTed.Data
 
             base.OnModelCreating(modelBuilder);
 
-
         }
     }
 }
