@@ -5,6 +5,7 @@ using GIFTed.Areas.Identity.Data;
 using GIFTed.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GIFTed.Models
 {
@@ -23,8 +24,20 @@ namespace GIFTed.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        
+        public DateTime today = DateTime.Today;
         public DateTime Birthday { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime NextBirthday
+        {
+            get => new DateTime(today.Year, Birthday.Month, Birthday.Day);
+            private set { }
+        }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int Countdown
+        {
+            get => (NextBirthday - DateTime.Today).Days;
+            private set { }
+        }
 
         public string Address { get; set; }
         public string ContactEmail { get; set; }
@@ -40,10 +53,12 @@ namespace GIFTed.Models
         {
         }
 
-        public Receivers(string name, DateTime birthday, string address, string contactemail, string notes, List<Gift> gifts)
+        public Receivers(string name, DateTime birthday, DateTime nextBirthday, int countdown, string address, string contactemail, string notes, List<Gift> gifts)
         {
             Name = name;
             Birthday = birthday;
+            NextBirthday = nextBirthday;
+            Countdown = countdown;
             Address = address;
             ContactEmail = contactemail;
             Notes = notes;

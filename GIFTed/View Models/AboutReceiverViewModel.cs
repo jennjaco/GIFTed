@@ -11,8 +11,12 @@ namespace GIFTed.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
 
-        [DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
+
+        public static DateTime Today = DateTime.Today;
+        public DateTime NextBirthday { get; set; }
+        public int Countdown { get; set; }
 
         public string Address { get; set; }
         public string ContactEmail { get; set; }
@@ -33,6 +37,8 @@ namespace GIFTed.ViewModels
             Id = receiver.Id;
             Name = receiver.Name;
             Birthday = receiver.Birthday;
+            NextBirthday = receiver.NextBirthday;
+            Countdown = (receiver.NextBirthday - Today).Days;
             Address = receiver.Address;
             ContactEmail = receiver.ContactEmail;
             Type = receiver.Type;
@@ -41,5 +47,7 @@ namespace GIFTed.ViewModels
             gifts = receiver.gifts;
 
         }
+
+
     }
 }

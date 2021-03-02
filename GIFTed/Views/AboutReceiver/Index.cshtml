@@ -5,11 +5,19 @@
 <h1>@Model.Name</h1>
 
 <div>
-    <p>Birthday: @Model.Birthday.ToString("MM/dd/yyyy")</p>
+    <h2 class="text-danger" align="center">Birthday: @Model.Birthday.ToString("MM/dd/yyyy")</h2>
+    <h4 class="text-warning" align="center">@Model.Countdown days away!</h4>
     <p>Address: @Model.Address</p>
     <p>Email: @Model.ContactEmail</p>
     <p>Relationship: @Model.Type</p>
     <p>Notes: @Model.Notes</p>
+
+    @if (Model.NextBirthday < DateTime.Today)
+    {
+        Model.Countdown = (Model.NextBirthday.AddYears(1) - DateTime.Today).Days;
+    }
+
+
 
     <table class="table">
         <tr>

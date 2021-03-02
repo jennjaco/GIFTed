@@ -60,7 +60,7 @@ namespace GIFTed.Controllers
                 context.Gift.Add(newGift);
                 context.SaveChanges();
 
-                return Redirect("/Gift");
+                return Redirect("/Receiver/Index");
             }
 
             return View(addGiftViewModel);
