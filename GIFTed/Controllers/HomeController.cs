@@ -9,22 +9,34 @@ using GIFTed.Models;
 using GIFTed.ViewModels;
 using GIFTed.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using GIFTed.Areas.Identity.Data;
 
 namespace GIFTed.Controllers
 {
     public class HomeController : Controller
     {
+        private UserManager<GIFTedUser> userManager;
+        private ReceiversDbContext context;
+
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<GIFTedUser> usrMgr, ReceiversDbContext dbContext)
         {
             _logger = logger;
+            userManager = usrMgr;
+            context = dbContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            
+            List<Receivers> receivers = context.Receivers
+                .Where(x => x.UserId == userManager.GetUserId(User))
+                .ToList();
+
+            return View(receivers);
         }
 
 

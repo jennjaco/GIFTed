@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<GIFTed.Models.Receivers>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,8 +8,28 @@
     <h1 class="display-4">Welcome to GIFTed!</h1>
     <h1 class="text-muted">Great Ideas For Thoughtful Gifting</h1>
     <h3>The resource designed to help you keep track of your gift giving.</h3>
-    <p><a role="button" class="btn btn-secondary" asp-controller="Receiver" asp-action="Add">Add a new receiver</a>
-    <a role="button" class="btn btn-secondary" asp-controller="Receiver" asp-action="Index">View All Receivers</a></p>
-    <p><a role="button" class="btn btn-warning" asp-controller="Gift" asp-action="Add">Add a new gift</a>
-    <a role="button" class="btn btn-warning" asp-controller="Gift" asp-action="Index">View All Gifts</a></p>
+    <p>
+        <a role="button" class="btn btn-secondary" asp-controller="Receiver" asp-action="Add">Add a new receiver</a>
+        <a role="button" class="btn btn-secondary" asp-controller="Receiver" asp-action="Index">View All Receivers</a>
+    </p>
+    <p>
+        <a role="button" class="btn btn-warning" asp-controller="Gift" asp-action="Add">Add a new gift</a>
+        <a role="button" class="btn btn-warning" asp-controller="Gift" asp-action="Index">View All Gifts</a>
+    </p>
+
+
+    @foreach (Receivers rec in Model)
+    {
+        @if (rec.NextBirthday.Month == DateTime.Today.Month)
+        {
+            <h4>Birthdays this month: @rec.Name</h4>
+            <p><a class="btn btn-outline-primary" asp-controller="AboutReceiver" asp-action="Index" asp-route-id="@rec.Id">Get a gift now!</a></p>
+        }
+
+
+    }
+
+
+
+
 </div>
