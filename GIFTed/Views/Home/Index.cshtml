@@ -18,18 +18,23 @@
     </p>
 
 
-    @foreach (Receivers rec in Model)
-    {
-        @if (rec.NextBirthday.Month == DateTime.Today.Month)
+    <table class="table">
+
+
+        @foreach (Receivers rec in Model)
         {
-            <h4>Birthdays this month: @rec.Name</h4>
-            <p><a class="btn btn-outline-primary" asp-controller="AboutReceiver" asp-action="Index" asp-route-id="@rec.Id">Get a gift now!</a></p>
+            @if ((rec.NextBirthday - DateTime.Today).Days < 30 && (rec.NextBirthday - DateTime.Today).Days > 0)
+            {
+                <thead>Upcoming Birthdays!</thead>
+                <tr>
+                    <td>@rec.Name</td>
+                    <td><a class="btn btn-outline-primary" asp-controller="AboutReceiver" asp-action="Index" asp-route-id="@rec.Id">Get a gift now!</a></td>
+                </tr>   
+            }
         }
+         
 
-
-    }
-
-
+    </table>
 
 
 </div>

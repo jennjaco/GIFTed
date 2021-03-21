@@ -4,18 +4,18 @@
 
 <h1>@Model.Name</h1>
 
+@if (Model.NextBirthday < DateTime.Today)
+{
+    Model.Countdown = (Model.NextBirthday.AddYears(1) - DateTime.Today).Days;
+}
+
 <div>
     <h2 class="text-danger" align="center">Birthday: @Model.Birthday.ToString("MM/dd/yyyy")</h2>
-    <h4 class="text-warning" align="center">@Model.Countdown days away!</h4>
+    <h4 class="text-warning" align="center">Next birthday is @Model.Countdown days away!</h4>
     <p>Address: @Model.Address</p>
     <p>Email: @Model.ContactEmail</p>
     <p>Relationship: @Model.Type</p>
     <p>Notes: @Model.Notes</p>
-
-    @if (Model.NextBirthday < DateTime.Today)
-    {
-        Model.Countdown = (Model.NextBirthday.AddYears(1) - DateTime.Today).Days;
-    }
 
 
 
@@ -46,8 +46,10 @@
 
 
     </table>
-    <p><a role="button" class="btn btn-success btn-lg" asp-controller="Gift" asp-action="Add">Add a new gift</a>
-    <a role="button"class="btn btn-warning" asp-controller="Receiver" asp-action="Edit" asp-route-id="@Model.Id">Edit Receiver</a>
-    <a role="button"class="btn btn-danger" asp-controller="Receiver" asp-action="Delete" asp-route-id="@Model.Id">Delete This Receiver</a></p>
+    <p>
+        <a role="button" class="btn btn-success btn-lg" asp-controller="Gift" asp-action="Add">Add a new gift</a>
+        <a role="button" class="btn btn-warning" asp-controller="Receiver" asp-action="Edit" asp-route-id="@Model.Id">Edit Receiver</a>
+        <a role="button" class="btn btn-danger" asp-controller="Receiver" asp-action="Delete" asp-route-id="@Model.Id">Delete This Receiver</a>
+    </p>
 
 </div>
